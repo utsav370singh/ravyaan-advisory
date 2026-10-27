@@ -1,0 +1,2 @@
+import type { MetadataRoute } from "next";
+export default function sitemap(): MetadataRoute.Sitemap { const base=process.env.NEXT_PUBLIC_SITE_URL||"http://localhost:3000"; return ["","/finance-accounting","/tax-regulatory","/business-advisory","/strategy-cfo-advisory","/digital-finance","/industries","/insights","/about","/careers","/contact","/privacy","/terms","/disclaimer","/cookies"].map(url=>({url:`${base}${url}`,lastModified:new Date(),changeFrequency:url===""?"weekly":"monthly",priority:url===""?1:0.7})); }
