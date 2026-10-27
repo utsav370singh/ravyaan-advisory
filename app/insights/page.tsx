@@ -1,7 +1,14 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import PageHero from "@/components/PageHero";
+import InsightExplorer from "@/components/InsightExplorer";
+import NewsletterForm from "@/components/NewsletterForm";
 import Reveal from "@/components/Reveal";
-export const metadata: Metadata = { title: "Insights", description: "Knowledge and perspectives for business leaders." };
-const categories=[["Finance","Cash flow, profitability, budgeting and financial management."],["Tax & Regulatory","GST, taxation and regulatory developments."],["Business","Planning, growth and performance."],["Strategy","Business strategy and transformation."],["MSME","Practical guidance for growing businesses."],["Technology","Digital finance, automation and technology trends."]];
-export default function Insights(){return <><PageHero eyebrow="RAVYAAN Insights" title="Perspectives for Business Leaders." intro="Practical knowledge to help business leaders understand change, evaluate choices and make more informed decisions." variant="insights" marker="01" tags={["Finance","Tax","Business","Strategy","MSME"]}/><section className="section insights-directory"><div className="container insight-page-grid">{categories.map(([title,text],i)=><Reveal key={title} delay={(i%3)*70} variant={i%2 ? "right" : "left"}><article><span>0{i+1}</span><h2>{title}</h2><p>{text}</p><small>Articles and updates coming soon</small></article></Reveal>)}</div></section><section className="section section-alt insights-formats" id="reports"><div className="container split-copy"><Reveal variant="left"><div><span className="section-kicker">Knowledge formats</span><h2>Built for Useful Decisions</h2></div></Reveal><Reveal variant="right"><div><p className="lead">Articles · Regulatory updates · Business guides · FAQs · Reports</p><p>We publish only verified, useful perspectives. Case studies will be added when genuine client engagements are available and publication permission has been obtained.</p><Link className="text-link" href="/contact">Ask a business question ↗</Link></div></Reveal></div></section><div id="case-studies" /></>}
+
+export const metadata: Metadata = { title: "Insights", description: "Practical finance, tax, business, strategy, MSME and technology perspectives for business leaders." };
+
+export default function Insights(){return <>
+  <PageHero eyebrow="RAVYAAN Insights" title="Perspectives for Business Leaders." intro="Practical knowledge to help business leaders understand change, evaluate choices and make more informed decisions." variant="insights" marker="01" tags={["Finance","Tax","Business","Strategy","MSME"]}/>
+  <section className="section insights-directory"><div className="container"><div className="section-heading"><div><span className="section-kicker">Ideas for action</span><h2>Latest Perspectives</h2></div><p>Editorial samples demonstrate the intended resource experience and can be replaced through the central insights data file.</p></div><InsightExplorer/></div></section>
+  <section className="section case-study-state" id="case-studies"><div className="container empty-case-grid"><Reveal variant="left"><div><span className="section-kicker">Case studies</span><h2>Evidence, Published Responsibly.</h2></div></Reveal><Reveal variant="right"><div><p className="lead">No client case studies are published yet.</p><p>Case studies will appear only when the engagement is genuine, outcomes are supportable and the client has provided permission. We do not use fictional success stories.</p></div></Reveal></div></section>
+  <section className="newsletter-band" id="reports"><div className="container"><NewsletterForm/></div></section>
+  </>}

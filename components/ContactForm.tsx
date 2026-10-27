@@ -1,12 +1,14 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 
 const enquiryAreas = ["Finance & Accounting", "Tax & Regulatory", "Business Advisory", "Strategy & CFO Advisory", "Digital Finance", "Other"];
 
 export default function ContactForm() {
+  const formRef = useRef<HTMLFormElement>(null);
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
+  useEffect(()=>{const requested=new URLSearchParams(window.location.search).get("area");if(!requested||!formRef.current)return;const select=formRef.current.elements.namedItem("area") as HTMLSelectElement;select.value=enquiryAreas.includes(requested)?requested:"Other"},[]);
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault(); setStatus("sending"); setMessage("");
     const form = event.currentTarget;
@@ -21,7 +23,7 @@ export default function ContactForm() {
     }
   }
   return (
-    <form className="contact-form" onSubmit={submit}>
+    <form ref={formRef} className="contact-form" onSubmit={submit}>
       <div className="form-grid">
         <label><span>Name *</span><input name="name" required minLength={2} autoComplete="name" placeholder="Your full name" /></label>
         <label><span>Business / Company</span><input name="company" autoComplete="organization" placeholder="Company name" /></label>

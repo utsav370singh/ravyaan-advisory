@@ -1,0 +1,2 @@
+import { siteConfig } from "@/data/config";
+export default function WhatsAppButton(){return <a className="whatsapp-float" href={`https://wa.me/${siteConfig.phoneHref.replace("+","")}?text=${encodeURIComponent("Hello RAVYAAN ADVISORY, I would like to discuss a business requirement.")}`} target="_blank" rel="noopener noreferrer" aria-label="Contact RAVYAAN on WhatsApp"><span aria-hidden="true">W</span><b>WhatsApp</b></a>}
